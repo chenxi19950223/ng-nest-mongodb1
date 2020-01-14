@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'ng-nest-mongodb';
+export class AppComponent implements OnInit{
+    isCollapsed = false;
+
+    constructor() {}
+
+    ngOnInit(): void {
+    }
+
 }
