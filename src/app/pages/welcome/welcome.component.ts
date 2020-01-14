@@ -13,10 +13,7 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.http.get('/api/user/query')
-          .subscribe(res => {
-              console.log(res)
-          })
+
   }
 
 }
