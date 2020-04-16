@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 
 import * as _ from 'lodash';
+import {AsyncSubject} from 'rxjs';
 
 @Component({
     selector: 'app-welcome',
@@ -21,10 +22,6 @@ export class WelcomeComponent implements OnInit {
             userName: [null , [Validators.required]],
             passWord: [null , [Validators.required]],
         });
-        console.log(1);
-        console.log(this.canvasRef);
-        console.log(_);
-
     }
 
     ngOnInit() {
