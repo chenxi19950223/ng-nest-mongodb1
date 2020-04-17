@@ -5,7 +5,7 @@ const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/canvas'
+        redirectTo: '/images'
     },
     {
         path: 'welcome',
@@ -36,6 +36,11 @@ const routes: Routes = [
         path: 'umeditor',
         loadChildren: () => import('./pages/umeditor-text/umeditor-text.module')
             .then(m => m.UmeditorTextModule)
+    },
+    {
+        path: 'images',
+        loadChildren: () => import('./pages/images/images.module')
+            .then(m => m.ImagesModule)
     }
 ];
 

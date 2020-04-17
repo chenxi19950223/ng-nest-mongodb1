@@ -15,10 +15,13 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     @ViewChild('bor', {static: true}) borRef: ElementRef<HTMLCanvasElement>;
     @ViewChild('straightLine', {static: true}) straightLineRef: ElementRef<HTMLCanvasElement>;
     @ViewChild('start', {static: true}) startRef: ElementRef<HTMLCanvasElement>;
+    @ViewChild('el', {static: true}) elRef: ElementRef<HTMLCanvasElement>;
+    @ViewChild('vid', {static: true}) vidRef: ElementRef<HTMLVideoElement>;
     canImage: CanvasRenderingContext2D;
     borImage: CanvasRenderingContext2D;
     straightLineImage: CanvasRenderingContext2D;
     startImage: CanvasRenderingContext2D;
+    elCan: CanvasRenderingContext2D;
     constructor(
         private el: ElementRef,
         private domSanitizer: DomSanitizer,
@@ -31,16 +34,41 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         this.bor();
         this.straightLine();
         this.startBor();
+        this.elCanImg();
+    }
+
+    elCanImg(): void {
+        this.elCan = this.elRef.nativeElement.getContext('2d');
+        this.elRef.nativeElement.width = 200;
+        this.elRef.nativeElement.height = 200;
+        let a = 145;
+        console.log(Math.PI)
+        const time = setInterval(() => {
+            a += 1;
+            this.elCan.strokeStyle = '#448aff';
+            this.elCan.beginPath();
+            if (a >= 300) {
+                clearInterval(time);
+            }
+            console.log(a);
+            console.log(Math.PI / 180);
+            console.log((Math.PI / 360) * a);
+            this.elCan.lineCap = 'round';
+            this.elCan.arc(100, 100, 95, (Math.PI / 360) * 225, (Math.PI / 360) * 3, false);
+            this.elCan.lineWidth = 5;
+            this.elCan.stroke();
+            this.elCan.closePath();
+        }, 10);
     }
 
     startBor(): void {
-        this.startRef.nativeElement.width = 400;
-        this.startRef.nativeElement.height = 400;
+        this.startRef.nativeElement.width = 200;
+        this.startRef.nativeElement.height = 200;
         this.startImage = this.startRef.nativeElement.getContext('2d');
         // 外层圆环
         this.startImage.beginPath();
         this.startImage.strokeStyle = '#ebebeb';  // 颜色
-        this.startImage.arc(100, 100, 80, (Math.PI / 180) * 270, (Math.PI / 180) * - 90, false);
+        this.startImage.arc(100, 100, 90, (Math.PI / 180) * 270, (Math.PI / 180) * - 90, false);
         this.startImage.lineWidth = 20;
         this.startImage.closePath();
         this.startImage.stroke();
@@ -55,7 +83,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         const timer = setInterval(() => {
             stepDeg += 1; // 以1为间距
             // 若当前数值已大于传入数值，则清除定时器
-            if (stepDeg >= 100) {
+            if (stepDeg >= 35) {
                 clearInterval(timer);
             }
             // 内层圆环
@@ -67,7 +95,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
             gradient.addColorStop(1, '#ff4514');
             context.strokeStyle = gradient;
             context.lineCap = 'round';  // 使其形状为圆弧
-            context.arc(100, 100, 80, (Math.PI / 180) * 270, (Math.PI / 180) * (270 + (stepDeg / 100 * 360)), false);
+            context.arc(100, 100, 90, (Math.PI / 180) * 150, (Math.PI / 180) * (270 + (stepDeg / 100 * 360)), false);
             context.lineWidth = 20; // 圆环的宽度
             context.stroke();
             context.closePath();
