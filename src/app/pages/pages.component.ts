@@ -1,17 +1,14 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewChildren, AfterViewInit, QueryList} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Navgetion, NavgetionService } from '../navgetion.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import {Navgetion, NavgetionService} from './navgetion.service';
-
-import * as _ from 'lodash';
-import {fromEvent, Subject} from 'rxjs';
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-pages',
+  templateUrl: './pages.component.html',
+  styleUrls: ['./pages.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class PagesComponent implements OnInit {
+
     isCollapsed = false;
     navgetion: Navgetion[];
 
@@ -34,4 +31,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     onNav(nav): void {
         console.log(nav);
     }
+
 }

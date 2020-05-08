@@ -1,6 +1,6 @@
 {
     "/api":{
-        "target":"http://10.0.0.215:8333/Meepo12345/test?AWSAccessKeyId=AKIA3ABOAEDF6NVAQZAY&Expires=1584614638&Signature=shrSf5FHXOzLEoud9Z4XnelDbzI%3D",
+        "target":"http://127.0.0.1:3000",
         "secure":false,
         "pathRewrite": {"^/api": ""},
         "changeOrigin": true,

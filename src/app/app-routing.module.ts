@@ -1,52 +1,29 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/images'
+        redirectTo: '/pages',
     },
     {
-        path: 'welcome',
-        loadChildren: () => import('./pages/welcome/welcome.module')
-            .then(m => m.WelcomeModule)
+        path: 'pages',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/pages.module')
+            .then(m => m.PagesModule),
     },
     {
-        path: 'canvas',
-        loadChildren: () => import('./pages/canvas/canvas.module')
-            .then(m => m.CanvasModule)
-    },
-    {
-        path: 'rx',
-        loadChildren: () => import('./pages/rx/rx.module')
-            .then(m => m.RxModule)
-    },
-    {
-        path: 'key',
-        loadChildren: () => import('./pages/key/key.module')
-            .then(m => m.KeyModule)
-    },
-    {
-        path: 'echarts',
-        loadChildren: () => import('./pages/echarts/echarts.module')
-            .then(m => m.EchartsModule)
-    },
-    {
-        path: 'umeditor',
-        loadChildren: () => import('./pages/umeditor-text/umeditor-text.module')
-            .then(m => m.UmeditorTextModule)
-    },
-    {
-        path: 'images',
-        loadChildren: () => import('./pages/images/images.module')
-            .then(m => m.ImagesModule)
+        path: 'login',
+        loadChildren: () => import('./login/login.module')
+            .then(m => m.LoginModule)
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

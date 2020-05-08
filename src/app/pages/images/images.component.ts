@@ -10,6 +10,7 @@ export interface GridType {
     x: number;
 }
 
+
 @Component({
     selector: 'app-images',
     templateUrl: './images.component.html',
@@ -134,6 +135,7 @@ export class ImagesComponent implements OnInit {
                         const w = (1920 / (num + 1)) * type[i].rows;
                         const h = (1080 / (num + 1)) * type[i].cols;
                         this.canImage.drawImage(img, x, y, w, h);
+                        console.log(this.canRef.nativeElement.toDataURL());
                         sub.next({index: i, toData: this.canRef.nativeElement.toDataURL()});
                     });
             }

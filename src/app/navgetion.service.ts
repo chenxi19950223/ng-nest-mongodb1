@@ -17,35 +17,30 @@ export class NavgetionService {
     constructor() {
         this.navgetion = [
             {
-                id: 'home',
+                id: 'pages',
                 title: '首页',
                 type: 'item',
-                children: [{
-                    id: 'home',
-                    title: '首页',
-                    type: 'item',
-                    routerLink: 'welcome'
-                }]
-            },
-            {
-                id: 'list',
-                title: '列表',
                 children: [
                     {
-                        id: '',
-                        title: '数据表',
-                        routerLink: ''
+                        id: 'welcome',
+                        title: 'welcome',
+                        type: 'item',
+                        routerLink: 'welcome'
                     },
                     {
-                        id: 'userList',
-                        title: '用户列表',
-                    }
+                        id: 'welcome',
+                        title: 'tree',
+                        type: 'item',
+                        routerLink: 'tree'
+                    },
+                    {
+                        id: 'canvas',
+                        title: 'canvas',
+                        type: 'item',
+                        routerLink: 'canvas'
+                    },
                 ]
             },
-            {
-                id: 'form',
-                title: '表单'
-            }
         ];
     }
 }
