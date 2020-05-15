@@ -6,7 +6,10 @@ import {CanvasComponent} from './canvas.component';
 const routes: Routes = [
     {
         path: '',
-        component: CanvasComponent
+        component: CanvasComponent,
+        data: {
+            reuse: true
+        }
     }
 ];
 

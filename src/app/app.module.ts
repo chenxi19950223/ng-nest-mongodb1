@@ -10,6 +10,8 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { RouteReuseStrategy } from '@angular/router';
+import { SimpleReuseStrategy } from './SimpleReuseStrategy';
 
 registerLocaleData(zh);
 
@@ -28,7 +30,13 @@ registerLocaleData(zh);
         ReactiveFormsModule,
         HttpClientJsonpModule,
     ],
-    providers: [{provide: NZ_I18N, useValue: zh_CN}],
+    providers: [
+        {provide: NZ_I18N, useValue: zh_CN},
+        {
+            provide: RouteReuseStrategy,
+            useClass: SimpleReuseStrategy
+        }
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {

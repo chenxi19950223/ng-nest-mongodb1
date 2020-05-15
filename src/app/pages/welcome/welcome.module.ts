@@ -13,3 +13,14 @@ import { WelcomeDirective } from './welcome.directive';
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }
+
+/*
+* 730
+* 433
+* 136
+* 127
+* 820
+* 802
+* 532
+* 505
+* */

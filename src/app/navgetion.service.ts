@@ -39,6 +39,24 @@ export class NavgetionService {
                         type: 'item',
                         routerLink: 'canvas'
                     },
+                    {
+                        id: 'images',
+                        title: 'images',
+                        type: 'item',
+                        routerLink: 'images'
+                    },
+                    {
+                        id: 'dir',
+                        title: 'dir',
+                        type: 'item',
+                        routerLink: 'dir'
+                    },
+                    {
+                        id: 'echarts',
+                        title: 'echarts',
+                        type: 'item',
+                        routerLink: 'echarts'
+                    },
                 ]
             },
         ];

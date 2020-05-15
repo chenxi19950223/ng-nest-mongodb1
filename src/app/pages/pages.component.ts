@@ -16,6 +16,7 @@ export class PagesComponent implements OnInit {
 
     theme = true;
 
+
     constructor(
         private navgetionService: NavgetionService,
         private sanitizer: DomSanitizer,

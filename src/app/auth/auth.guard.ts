@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
     CanActivate,
-    CanActivateChild,
     CanLoad,
     Route,
     UrlSegment,
@@ -18,7 +17,7 @@ import { AuthService }      from './auth.service';
 @Injectable({
     providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AuthGuard implements CanActivate, CanLoad {
 
     constructor(private authService: AuthService, private router: Router) {}
 
@@ -26,12 +25,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree | any | void {
         let url: string = state.url;
-
-        return this.checkLogin(url);
+        return true;
     }
 
     checkLogin(url: string): boolean {
-        if (this.authService.login()) { return true; }
+        if (this.authService.isLoggedIn) { return true; }
 
         // Store the attempted URL for redirecting
         this.authService.redirectUrl = url;
@@ -39,14 +37,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         // Navigate to the login page with extras
         this.router.navigate(['/login']);
         return false;
-    }
-
-    canActivateChild(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        console.log(next);
-        console.log(state);
-        return true;
     }
 
     canLoad(

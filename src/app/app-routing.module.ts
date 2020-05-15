@@ -6,11 +6,10 @@ const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/pages',
+        redirectTo: 'pages',
     },
     {
         path: 'pages',
-        canActivate: [AuthGuard],
         loadChildren: () => import('./pages/pages.module')
             .then(m => m.PagesModule),
     },

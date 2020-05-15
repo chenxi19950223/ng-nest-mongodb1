@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { PagesComponent } from './pages.component';
 
 
@@ -10,8 +11,13 @@ const routes: Routes = [
         children: [
             {
                 path: '',
+                redirectTo: 'dir',
                 pathMatch: 'full',
-                redirectTo: '/canvas',
+            },
+            {
+                path: 'dir',
+                loadChildren: () => import('../pages/dir/dir.module')
+                    .then(m => m.DirModule)
             },
             {
                 path: 'welcome',

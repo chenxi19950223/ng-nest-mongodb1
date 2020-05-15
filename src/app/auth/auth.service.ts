@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
+import { NgForage } from 'ngforage';
 
 @Injectable({
     providedIn: 'root',
@@ -13,14 +14,13 @@ export class AuthService {
     // store the URL so we can redirect after logging in
     redirectUrl: string;
 
-    constructor() {
+    constructor(
+        private ngForage: NgForage
+    ) {
     }
 
-    login(): Observable<boolean> {
-        return of(true).pipe(
-            delay(1000),
-            tap(val => this.isLoggedIn = true)
-        );
+    login(): boolean {
+        return true;
     }
 
     logout(): void {
