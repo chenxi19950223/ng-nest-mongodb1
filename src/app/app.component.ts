@@ -1,37 +1,39 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewChildren, AfterViewInit, QueryList} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import {Navgetion, NavgetionService} from './navgetion.service';
+import { Navgetion, NavgetionService } from './navgetion.service';
 
 import * as _ from 'lodash';
-import {fromEvent, Subject} from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { SimpleReuseStrategy } from './SimpleReuseStrategy';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    providers: [SimpleReuseStrategy],
 })
-export class AppComponent implements OnInit, AfterViewInit {
-    isCollapsed = false;
-    navgetion: Navgetion[];
+export class AppComponent {
+    title = 'app';
 
-    src: any;
+    menuList: Array<{ module: string }>=[];
 
-    theme = true;
-
-    constructor(
-        private navgetionService: NavgetionService,
-        private sanitizer: DomSanitizer,
-    ) {
-        this.navgetion = this.navgetionService.navgetion;
-    }
-
-    ngOnInit(): void {
-    }
-    ngAfterViewInit(): void {
-    }
-
-    onNav(nav): void {
-        console.log(nav);
+    constructor(private router: Router,
+                private activatedRoute: ActivatedRoute) {
+// //路由事件
+//         this.router.events.filter(event => event instanceof NavigationEnd)
+//             .map(() => this.activatedRoute)
+//             .map(route => {
+//                 while (route.firstChild) route = route.firstChild;
+//                 return route;
+//             })
+//             .filter(route => route.outlet === 'primary')
+//             .mergeMap(route => route.data)
+//             .subscribe((event) => {
+//                 var menu = { module: event["module"]};
+//                 this.menuList.push(menu);
+//             });
     }
 }

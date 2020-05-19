@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable, Subject } from 'rxjs';
 
 @Component({
     selector: 'app-dir',
@@ -12,27 +12,43 @@ export class DirComponent implements OnInit {
     constructor(
         private http: HttpClient,
     ) {
-        this.aaa();
+
         let idx: number;
+        const obs = Observable.create((observer) => {
+            observer.next(1);
+            observer.next(2);
+            observer.next(3);
+            observer.complete();
+        })
+        obs.subscribe(res => console.log(res))
+        const sub = new Subject();
+        sub.subscribe({
+            next: res => console.log(res)
+        })
+        sub.next(1);
+        let i = 2;
+        setInterval(() => {
+            sub.next(i++);
+            if (i >= 10) {
+                sub.complete();
+            }
+        }, 1000);
+        const a = this.a();
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
+        console.log(a.next());
     }
 
-    async aaa(){
-        try {
-            const b = await this.add();
-            const c = await this.save();
-            console.log(b);
-            console.log(c);
-        } catch (e) {
-            console.log(e)
-        }
-    }
 
-    add(): Promise<any> {
-        return new Promise((resolve, reject) => reject('aaa'))
-    }
-
-    save(): Promise<any> {
-        return new Promise((resolve, reject) => reject('接口二返回的数据'));
+    *a(): any {
+        yield 'sdfg';
+        yield 'asd';
+        return 'sdf';
     }
 
     ngOnInit(): void {
