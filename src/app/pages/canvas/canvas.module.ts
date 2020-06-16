@@ -6,10 +6,11 @@ import { CanvasComponent } from './canvas.component';
 
 
 @NgModule({
-  declarations: [CanvasComponent],
-  imports: [
-    CommonModule,
-    CanvasRoutingModule
-  ]
+    declarations: [CanvasComponent],
+    imports: [
+        CommonModule,
+        CanvasRoutingModule,
+    ],
 })
-export class CanvasModule { }
+export class CanvasModule {
+}

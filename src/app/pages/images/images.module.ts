@@ -1,16 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {ImagesRoutingModule} from './images-routing.module';
-import {ImagesComponent} from './images.component';
+import { ImagesRoutingModule } from './images-routing.module';
+import { ImagesComponent } from './images.component';
 
 
 @NgModule({
     declarations: [ImagesComponent],
     imports: [
         CommonModule,
-        ImagesRoutingModule
-    ]
+        ImagesRoutingModule,
+    ],
 })
 export class ImagesModule {
 }

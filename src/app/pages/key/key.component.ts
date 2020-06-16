@@ -1,9 +1,9 @@
-import {Component, OnInit, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-key',
     templateUrl: './key.component.html',
-    styleUrls: ['./key.component.scss']
+    styleUrls: ['./key.component.scss'],
 })
 export class KeyComponent implements OnInit {
     right: boolean;

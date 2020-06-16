@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {UmeditorTextComponent} from './umeditor-text.component';
+import { UmeditorTextComponent } from './umeditor-text.component';
 
 
 const routes: Routes = [
     {
         path: '',
-        component: UmeditorTextComponent
-    }
+        component: UmeditorTextComponent,
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class UmeditorTextRoutingModule { }
+export class UmeditorTextRoutingModule {
+}

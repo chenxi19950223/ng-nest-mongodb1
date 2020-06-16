@@ -13,7 +13,7 @@
         </div>
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
             <li *ngFor="let nav of navgetion" nz-submenu nzOpen [nzTitle]="nav.title" nzIcon="dashboard">
-                <ul >
+                <ul>
                     <li *ngFor="let item of nav.children" nz-menu-item nzMatchRouter routerLinkActive="aaa">
                         <a *ngIf="nav.children" [routerLink]="item.routerLink">{{item.title}}</a>
                     </li>

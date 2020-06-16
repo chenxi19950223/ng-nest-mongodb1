@@ -8,11 +8,12 @@ import { WelcomeDirective } from './welcome.directive';
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule],
-  declarations: [WelcomeComponent, WelcomeDirective],
-  exports: [WelcomeComponent]
+    imports: [WelcomeRoutingModule],
+    declarations: [WelcomeComponent, WelcomeDirective],
+    exports: [WelcomeComponent],
 })
-export class WelcomeModule { }
+export class WelcomeModule {
+}
 
 /*
 * 730

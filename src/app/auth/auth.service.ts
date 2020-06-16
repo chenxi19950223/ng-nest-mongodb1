@@ -15,7 +15,7 @@ export class AuthService {
     redirectUrl: string;
 
     constructor(
-        private ngForage: NgForage
+        private ngForage: NgForage,
     ) {
     }
 

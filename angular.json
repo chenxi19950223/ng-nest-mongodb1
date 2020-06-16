@@ -35,6 +35,7 @@
                         "styles": [
                             "src/theme.less",
                             "src/styles.scss",
+                            "node_modules/swiper/css/swiper.css",
                             "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
                         ],
                         "scripts": [

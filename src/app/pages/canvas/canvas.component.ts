@@ -7,7 +7,6 @@ import { NgForage } from 'ngforage';
 import { map } from 'rxjs/operators';
 
 
-
 @Component({
     selector: 'app-canvas',
     templateUrl: './canvas.component.html',
@@ -162,11 +161,11 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     ngAfterViewInit(): void {
         const scroll = fromEvent(window, 'scroll')
             .pipe(
-                map(_ => window.document.documentElement.scrollHeight)
+                map(_ => window.document.documentElement.scrollHeight),
             )
             .subscribe(res => {
                 console.log(res);
-            })
+            });
         // // 获取所有box类的元素
         // console.log(this.el.nativeElement.querySelectorAll('.box'));
         // // 获取第一个box类的元素

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 import { AsyncSubject, fromEvent, Subject } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
@@ -28,7 +29,8 @@ export class ImagesComponent implements OnInit {
     canImage: CanvasRenderingContext2D;
 
     constructor(
-        private imagesService: ImagesService
+        private imagesService: ImagesService,
+        private http: HttpClient,
     ) {
 
         this.gridType = [
@@ -159,7 +161,21 @@ export class ImagesComponent implements OnInit {
         this.imagesService.canvas(type, this.imgSrc)
             .subscribe(res => {
                 this.base.push(res.toData);
-            })
+                let request;
+                const formData = new FormData();
+                formData.append('pem', res.blob);
+                console.log(formData)
+
+                const req = new HttpRequest('POST', 'http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData,
+                    {
+                        reportProgress: true
+                    }
+                );
+                request = this.http.request(req);
+                request.subscribe(res => console.log(res));
+                // this.http.post('http://127.0.0.1:3000/user/file', formData)
+                //     .subscribe(console.log)
+            });
     }
 
 }

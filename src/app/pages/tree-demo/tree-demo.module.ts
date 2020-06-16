@@ -6,10 +6,11 @@ import { TreeDemoComponent } from './tree-demo.component';
 
 
 @NgModule({
-  declarations: [TreeDemoComponent],
-  imports: [
-    CommonModule,
-    TreeDemoRoutingModule
-  ]
+    declarations: [TreeDemoComponent],
+    imports: [
+        CommonModule,
+        TreeDemoRoutingModule,
+    ],
 })
-export class TreeDemoModule { }
+export class TreeDemoModule {
+}

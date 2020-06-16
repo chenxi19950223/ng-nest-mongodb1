@@ -18,7 +18,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
     title = 'app';
 
-    menuList: Array<{ module: string }>=[];
+    menuList: Array<{ module: string }> = [];
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute) {

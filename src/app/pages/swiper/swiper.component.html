@@ -1,0 +1,14 @@
+<div class="content">
+    <swiper [config]="swiperConfig">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide partner-card" *ngFor="let image of partners" >
+                <div class="text">
+                    <span class="text-info">{{image.imgPath}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </swiper>
+</div>

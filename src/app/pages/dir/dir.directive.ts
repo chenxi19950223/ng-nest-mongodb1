@@ -19,7 +19,7 @@ export class DirDirective {
 
         this.renderer.appendChild(div, text);
         this.renderer.appendChild(this.el.nativeElement, div);
-        console.log(this.el.nativeElement)
+        console.log(this.el.nativeElement);
         // console.log(this.el.nativeElement.scrollWidth);
         // console.log(this.el.nativeElement.offsetWidth);
 

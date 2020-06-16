@@ -6,10 +6,11 @@ import { KeyComponent } from './key.component';
 
 
 @NgModule({
-  declarations: [KeyComponent],
-  imports: [
-    CommonModule,
-    KeyRoutingModule
-  ]
+    declarations: [KeyComponent],
+    imports: [
+        CommonModule,
+        KeyRoutingModule,
+    ],
 })
-export class KeyModule { }
+export class KeyModule {
+}

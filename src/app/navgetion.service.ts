@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface Navgetion {
     id: string;
@@ -10,10 +10,11 @@ export interface Navgetion {
 }
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NavgetionService {
     navgetion: Navgetion[];
+
     constructor() {
         this.navgetion = [
             {
@@ -25,39 +26,63 @@ export class NavgetionService {
                         id: 'welcome',
                         title: 'welcome',
                         type: 'item',
-                        routerLink: 'welcome'
+                        routerLink: 'welcome',
                     },
                     {
                         id: 'welcome',
                         title: 'tree',
                         type: 'item',
-                        routerLink: 'tree'
+                        routerLink: 'tree',
                     },
                     {
                         id: 'canvas',
                         title: 'canvas',
                         type: 'item',
-                        routerLink: 'canvas'
+                        routerLink: 'canvas',
                     },
                     {
                         id: 'images',
                         title: 'images',
                         type: 'item',
-                        routerLink: 'images'
+                        routerLink: 'images',
                     },
                     {
                         id: 'dir',
                         title: 'dir',
                         type: 'item',
-                        routerLink: 'dir'
+                        routerLink: 'dir',
                     },
                     {
                         id: 'echarts',
                         title: 'echarts',
                         type: 'item',
-                        routerLink: 'echarts'
+                        routerLink: 'echarts',
                     },
-                ]
+                    {
+                        id: 'table',
+                        title: 'table',
+                        type: 'item',
+                        routerLink: 'table',
+                    },
+                    {
+                        id: 'amap',
+                        title: 'amap',
+                        type: 'item',
+                        routerLink: 'amap',
+                    },
+                    {
+                        id: 'three',
+                        title: 'three',
+                        type: 'item',
+                        routerLink: 'three',
+                    },
+                    {
+                        id: 'swiper',
+                        title: 'swiper',
+                        type: 'item',
+                        routerLink: 'swiper'
+                    }
+                ],
             },
         ];
     }

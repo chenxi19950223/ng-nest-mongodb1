@@ -1,0 +1,20 @@
+<div class="box">
+    <input nz-input placeholder="请输入地址...." autocomplete="off"
+           amapAutocomplete
+           [city]="myCity"
+           [citylimit]="!!myCity"
+           (naReady)="onEvent($event, 'naReady')"
+           (naComplete)="onEvent($event, 'naComplete')"
+           (naChoose)="onEvent($event, 'naChoose')"
+           (naSelect)="onEvent($event, 'naSelect')"
+    >
+    <ngx-amap
+            class="demo-map"
+            (naClick)="onMapEvent($event, 'naClick')">
+        <amap-marker *ngFor="let marker of markers; index as i" [position]="marker">
+            <amap-info-window [offset]="infoWindowOffset">
+                我是第 {{i + 1}} 个marker
+            </amap-info-window>
+        </amap-marker>
+    </ngx-amap>
+</div>

@@ -3,9 +3,9 @@ import { Navgetion, NavgetionService } from '../navgetion.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-pages',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+    selector: 'app-pages',
+    templateUrl: './pages.component.html',
+    styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit {
 
@@ -26,6 +26,7 @@ export class PagesComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
     ngAfterViewInit(): void {
     }
 

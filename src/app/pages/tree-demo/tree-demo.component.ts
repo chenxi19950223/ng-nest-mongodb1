@@ -24,7 +24,7 @@ export class TreeDemoComponent implements OnInit {
         this.http.post('api/user/save', {userName: '李四FG', passWord: '12345645FG64', account: 'DDFGFG'})
             .subscribe(res => {
                 console.log(res);
-            })
+            });
     }
 
 }

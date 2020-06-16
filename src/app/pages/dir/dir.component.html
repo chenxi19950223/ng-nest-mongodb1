@@ -1,9 +1,9 @@
-<div class="box">
-    <div class="image"></div>
-    <input type="file" class="file" (change)="onFile($event)">
+<div class="content" #content>
+    <div class="box">
+        <div class="image"></div>
+        <input type="file" class="file" name="file" #imageInput (change)="onUploadClick(imageInput)">
+    </div>
+    <img [src]="img" alt="">
+    <a [routerLink]="['/pages/dir/demo', 'aaa']">岁的风格</a>
+
 </div>
-<app-dir-demo>
-    <h2>我是嵌入的外部内容，相当于vue的slot</h2>
-    <p>我是ng content 内容投影</p>
-    <span>ng content测试</span>
-</app-dir-demo>

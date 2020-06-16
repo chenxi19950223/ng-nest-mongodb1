@@ -9,7 +9,7 @@ export class ImagesService {
     private renderer: Renderer2;
 
     constructor(
-        rendererFactory: RendererFactory2
+        rendererFactory: RendererFactory2,
     ) {
         this.renderer = rendererFactory.createRenderer(null, null);
     }
@@ -48,7 +48,11 @@ export class ImagesService {
                         const w = (1920 / (num + 1)) * type[i].rows;
                         const h = (1080 / (num + 1)) * type[i].cols;
                         canImage.drawImage(img, x, y, w, h);
-                        sub.next({index: i, toData: canvas.toDataURL()});
+                        let toData;
+                        canvas.toBlob((blob) => {
+                            toData = blob
+                        })
+                        sub.next({index: i, toData: canvas.toData, blob: toData});
                     });
             }
         }
@@ -60,11 +64,11 @@ export class ImagesService {
                 filter(({index}) => index === lastIndex),
             )
             .subscribe(
-                res => subA.next(res)
+                res => subA.next(res),
             );
         return new Observable((observer) => {
             subA.subscribe(res => observer.next(res));
-        })
+        });
     }
 
 }

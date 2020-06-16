@@ -7,19 +7,20 @@ import {
     ActivatedRouteSnapshot,
     RouterStateSnapshot,
     UrlTree,
-    Router
+    Router,
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { AuthService }      from './auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {
+    }
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -29,7 +30,9 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
 
     checkLogin(url: string): boolean {
-        if (this.authService.isLoggedIn) { return true; }
+        if (this.authService.isLoggedIn) {
+            return true;
+        }
 
         // Store the attempted URL for redirecting
         this.authService.redirectUrl = url;

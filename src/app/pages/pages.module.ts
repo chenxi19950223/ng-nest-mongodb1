@@ -18,7 +18,7 @@ import { PagesComponent } from './pages.component';
         NzLayoutModule,
         NzMenuModule,
         IconsProviderModule,
-        NgZorroAntdModule
+        NgZorroAntdModule,
     ],
     providers: [{provide: NZ_I18N, useValue: zh_CN}],
 })

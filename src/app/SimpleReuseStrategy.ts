@@ -2,9 +2,9 @@ import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, Detac
 
 export class SimpleReuseStrategy implements RouteReuseStrategy {
 
-    public static handlers: { [key: string]: DetachedRouteHandle } = {}
+    public static handlers: { [key: string]: DetachedRouteHandle } = {};
 
-    private static waitDelete: string
+    private static waitDelete: string;
 
     /** 表示对所有路由允许复用 如果你有路由不想利用可以在这加一些业务逻辑判断 */
     public shouldDetach(route: ActivatedRouteSnapshot): boolean {
@@ -15,13 +15,13 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     /** 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象 */
     public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
         console.debug('===store-route', route, 'store-handle', handle);
-        SimpleReuseStrategy.handlers[this.getRouteUrl(route)] = handle
+        SimpleReuseStrategy.handlers[this.getRouteUrl(route)] = handle;
     }
 
     /** 若 path 在缓存中有的都认为允许还原路由 */
     public shouldAttach(route: ActivatedRouteSnapshot): boolean {
         console.debug('===shouldAttach-route', route);
-        return !!SimpleReuseStrategy.handlers[this.getRouteUrl(route)]
+        return !!SimpleReuseStrategy.handlers[this.getRouteUrl(route)];
     }
 
     /** 从缓存中获取快照，若无则返回null */
@@ -29,10 +29,10 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
         console.debug('===retrieve-route', route);
         console.log(route);
         if (!route.routeConfig) {
-            return null
+            return null;
         }
 
-        return SimpleReuseStrategy.handlers[this.getRouteUrl(route)]
+        return SimpleReuseStrategy.handlers[this.getRouteUrl(route)];
     }
 
     /** 进入路由触发，判断是否同一路由 */

@@ -1,0 +1,63 @@
+.toolbar {
+    padding: 20px;
+    height: 64px;
+
+    .icon {
+        float: right;
+        opacity: 0.38;
+        cursor: pointer;
+    }
+}
+
+.table {
+    border-top: 1px solid #DDD;
+    width: 100%;
+
+    .mat-header-cell {
+        padding-left: 24px;
+        opacity: 0.9;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .mat-cell {
+        padding-left: 24px;
+    }
+
+    .mat-column-interface {
+        flex: 0 1 auto;
+    }
+
+    .category-cell,
+    .function-cell {
+        border-right: 1px solid #ddd;
+    }
+
+    .mat-column-times,
+    .mat-column-count {
+        width: 240px;
+
+        input {
+            padding-left: 10px;
+            width: 200px;
+            height: 35px;
+            border-radius: 4px;
+            border: solid 1px #DDD;
+        }
+    }
+
+
+    .mat-column-action {
+        width: 130px;
+
+        .operate-icon-edit:hover {
+            background-color: rgba(#448aff, 0.1);
+            color: #448aff;
+        }
+
+        .operate-icon-delete:hover {
+            background-color: rgba(#f86b6b, 0.1);
+            color: #f86b6b;
+        }
+    }
+}

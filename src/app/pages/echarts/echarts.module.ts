@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {NgxEchartsModule} from 'ngx-echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
 
-import {EchartsRoutingModule} from './echarts-routing.module';
-import {EchartsComponent} from './echarts.component';
+import { EchartsRoutingModule } from './echarts-routing.module';
+import { EchartsComponent } from './echarts.component';
 
 
 @NgModule({
@@ -12,8 +12,8 @@ import {EchartsComponent} from './echarts.component';
     imports: [
         CommonModule,
         EchartsRoutingModule,
-        NgxEchartsModule
-    ]
+        NgxEchartsModule,
+    ],
 })
 export class EchartsModule {
 }

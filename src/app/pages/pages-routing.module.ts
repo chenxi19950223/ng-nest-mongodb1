@@ -11,13 +11,13 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dir',
+                redirectTo: 'swiper',
                 pathMatch: 'full',
             },
             {
                 path: 'dir',
                 loadChildren: () => import('../pages/dir/dir.module')
-                    .then(m => m.DirModule)
+                    .then(m => m.DirModule),
             },
             {
                 path: 'welcome',
@@ -59,8 +59,28 @@ const routes: Routes = [
                 loadChildren: () => import('../pages/tree-demo/tree-demo.module')
                     .then(m => m.TreeDemoModule),
             },
-        ]
-    }
+            {
+                path: 'table',
+                loadChildren: () => import('../pages/table/table.module')
+                    .then(m => m.TableModule),
+            },
+            {
+                path: 'amap',
+                loadChildren: () => import('../pages/amap-demo/amap-demo.module')
+                    .then(m => m.AmapDemoModule),
+            },
+            {
+                path: 'three',
+                loadChildren: () => import('../pages/three-demo/three-demo.module')
+                    .then(m => m.ThreeDemoModule),
+            },
+            {
+                path: 'swiper',
+                loadChildren: () => import('../pages/swiper/swiper.module')
+                    .then(m => m.SwiperModule)
+            }
+        ],
+    },
 ];
 
 @NgModule({

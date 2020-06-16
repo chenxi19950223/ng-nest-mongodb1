@@ -1,18 +1,18 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {KeyComponent} from './key.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { KeyComponent } from './key.component';
 
 
 const routes: Routes = [
     {
         path: '',
-        component: KeyComponent
-    }
+        component: KeyComponent,
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class KeyRoutingModule {
 }
