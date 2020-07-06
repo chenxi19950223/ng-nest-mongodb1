@@ -1,7 +1,7 @@
 <div class="content" #content>
     <div class="box">
         <div class="image"></div>
-        <input type="file" class="file" name="file" #imageInput (change)="onUploadClick(imageInput)">
+        <input type="file" class="file" name="file" #imageInput (change)="onUploadClick($event)">
     </div>
     <img [src]="img" alt="">
     <a [routerLink]="['/pages/dir/demo', 'aaa']">岁的风格</a>

@@ -5,7 +5,8 @@ import { fromEvent, Observable, Subject } from 'rxjs';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router } from '@angular/router';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as _ from 'fs';
+
+import { run } from './aaa.js';
 
 class ImageSnippet {
     constructor(public src: string, public file: File) {
@@ -59,53 +60,56 @@ export class DirComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(run);
         this.data();
         console.log(this.con.nativeElement.clientWidth);
         console.log(this.con.nativeElement.clientHeight);
         this.con.nativeElement.style.backgroundColor = '#448aff';
     }
 
-    onUploadClick(imageInput): void {
-        const file: File = imageInput.files[0];
-        // console.log(file);
-        // this.img = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
-        // console.log(this.img)
-
-        const formData = new FormData();
-        // console.log(file);
-        formData.append('file', file);
-        formData.set('url', '/home/gj107/testFile/aaa.pem');
-        console.log(formData);
-
-        let request;
-        // console.log(file);
-        // const req = new HttpRequest('POST', 'http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData,
-        // //     {
-        // //     // headers: new HttpHeaders({
-        // //     //     // 'content-type': 'application/json',
-        // //     //     'Access-Control-Allow-Origin': 'true'
-        // //     // }),
-        // //
-        // //     reportProgress: true, withCredentials: false
-        // // }
-        // //     {
-        // //         reportProgress: true
-        // //     }
-        // );
-        // request = this.http.request(req);
-        // request.subscribe(res => console.log(res));
-        // console.log(1)
-
-        this.http.post('http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData)
-            .subscribe((res: any) => {
-                console.log(res.data)
-                this.img = res.data;
-            });
-        // this.http.post('http://127.0.0.1:3000/user/file', formData)
+    onUploadClick(event): void {
+        window.open('http://www.baidu.com');
+        console.log(event.target.files);
+        // const file: File = imageInput.files[0];
+        // // console.log(file);
+        // // this.img = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
+        // // console.log(this.img)
+        //
+        // const formData = new FormData();
+        // // console.log(file);
+        // formData.append('file', file);
+        // formData.set('url', '/home/gj107/testFile/aaa.pem');
+        // console.log(formData);
+        //
+        // let request;
+        // // console.log(file);
+        // // const req = new HttpRequest('POST', 'http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData,
+        // // //     {
+        // // //     // headers: new HttpHeaders({
+        // // //     //     // 'content-type': 'application/json',
+        // // //     //     'Access-Control-Allow-Origin': 'true'
+        // // //     // }),
+        // // //
+        // // //     reportProgress: true, withCredentials: false
+        // // // }
+        // // //     {
+        // // //         reportProgress: true
+        // // //     }
+        // // );
+        // // request = this.http.request(req);
+        // // request.subscribe(res => console.log(res));
+        // // console.log(1)
+        //
+        // this.http.post('http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData)
         //     .subscribe((res: any) => {
         //         console.log(res.data)
         //         this.img = res.data;
         //     });
+        // // this.http.post('http://127.0.0.1:3000/user/file', formData)
+        // //     .subscribe((res: any) => {
+        // //         console.log(res.data)
+        // //         this.img = res.data;
+        // //     });
 
     }
 

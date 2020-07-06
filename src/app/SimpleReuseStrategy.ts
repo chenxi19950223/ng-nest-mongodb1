@@ -1,5 +1,7 @@
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class SimpleReuseStrategy implements RouteReuseStrategy {
 
     public static handlers: { [key: string]: DetachedRouteHandle } = {};
