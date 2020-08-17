@@ -2,7 +2,7 @@
     <img class="box-img" *ngFor="let item of imgSrc" [src]="item" alt="">
 </div>
 <button *ngFor="let item of gridType" (click)="onSave(item)">合成</button>
-<canvas #can></canvas>
+<canvas #can style="display: none;"></canvas>
 <div class="box">
     <img class="box-img" *ngFor="let item of base" [src]="item" alt="">
 </div>

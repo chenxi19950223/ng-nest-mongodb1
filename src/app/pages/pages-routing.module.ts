@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'swiper',
+                redirectTo: 'service',
                 pathMatch: 'full',
             },
             {
@@ -78,6 +78,11 @@ const routes: Routes = [
                 path: 'swiper',
                 loadChildren: () => import('../pages/swiper/swiper.module')
                     .then(m => m.SwiperModule)
+            },
+            {
+                path: 'service',
+                loadChildren: () => import('../pages/service-demo/service-demo.module')
+                    .then(m => m.ServiceDemoModule)
             }
         ],
     },

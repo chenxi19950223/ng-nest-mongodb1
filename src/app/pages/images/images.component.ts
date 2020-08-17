@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 import { AsyncSubject, fromEvent, Subject } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 
 import { ImagesService } from './images.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface GridType {
     cols: number;
@@ -31,6 +33,7 @@ export class ImagesComponent implements OnInit {
     constructor(
         private imagesService: ImagesService,
         private http: HttpClient,
+        private domSanitizer: DomSanitizer,
     ) {
 
         this.gridType = [
@@ -141,8 +144,9 @@ export class ImagesComponent implements OnInit {
     //                     const w = (1920 / (num + 1)) * type[i].rows;
     //                     const h = (1080 / (num + 1)) * type[i].cols;
     //                     this.canImage.drawImage(img, x, y, w, h);
-    //                     console.log(this.canRef.nativeElement.toDataURL());
-    //                     sub.next({index: i, toData: this.canRef.nativeElement.toDataURL()});
+    //                     this.canRef.nativeElement.toBlob(blob => {
+    //                         sub.next({index: i, toData: blob});
+    //                     });
     //                 });
     //         }
     //     }
@@ -153,26 +157,33 @@ export class ImagesComponent implements OnInit {
     //             filter(({index}) => index === lastIndex),
     //         )
     //         .subscribe((res: any) => {
-    //             this.base.push(res.toData);
+    //             console.log(this.domSanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(res.toData)));
+    //             console.log(window);
+    //             this.base.push(this.domSanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(res.toData)));
     //         });
     // }
 
     onSave(type): void {
         this.imagesService.canvas(type, this.imgSrc)
             .subscribe(res => {
-                this.base.push(res.toData);
-                let request;
-                const formData = new FormData();
-                formData.append('pem', res.blob);
-                console.log(formData)
-
-                const req = new HttpRequest('POST', 'http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData,
-                    {
-                        reportProgress: true
-                    }
+                const files = new window.File(
+                    [res.toData],
+                    'name',
                 );
-                request = this.http.request(req);
-                request.subscribe(res => console.log(res));
+                console.log(files);
+                // this.base.push(res.toData);
+                // let request;
+                // const formData = new FormData();
+                // formData.append('pem', res.blob);
+                // console.log(formData);
+
+                // const req = new HttpRequest('POST', 'http://10.0.0.41:3005/deviceHttpsCertificateUpload', formData,
+                //     {
+                //         reportProgress: true
+                //     }
+                // );
+                // request = this.http.request(req);
+                // request.subscribe(res => console.log(res));
                 // this.http.post('http://127.0.0.1:3000/user/file', formData)
                 //     .subscribe(console.log)
             });

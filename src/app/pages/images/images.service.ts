@@ -15,16 +15,21 @@ export class ImagesService {
     }
 
     canvas(type, imgSrc): Observable<any> {
+        // 使用Renderer2创建新canvas元素
         const canvas = this.renderer.createElement('canvas');
+        // 设置画布像素
         canvas.width = 1920;
         canvas.height = 1080;
+        // 获取创建的canvas上下文对象
         const canImage = canvas.getContext('2d');
+        // 获取最大列数
         let idx = 0;
         type.forEach(item => {
             if (idx < item.x) {
                 idx = item.x;
             }
         });
+        // 获取最大行数
         let idy = 0;
         type.forEach(item => {
             if (idy < item.y) {
@@ -34,6 +39,9 @@ export class ImagesService {
         let num: number;
         // 计算布局最大格数
         idx > idy ? num = idx : num = idy;
+        /*
+        * 创建一个可观察对象
+        * */
         const sub = new Subject();
         const iArr = [];
         for (let i = 0; i < type.length; i++) {
@@ -50,8 +58,8 @@ export class ImagesService {
                         canImage.drawImage(img, x, y, w, h);
                         let toData;
                         canvas.toBlob((blob) => {
-                            toData = blob
-                        })
+                            toData = blob;
+                        });
                         sub.next({index: i, toData: canvas.toData, blob: toData});
                     });
             }
