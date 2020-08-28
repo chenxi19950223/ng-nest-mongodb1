@@ -1,7 +1,7 @@
 <div class="box" #box>
     <form [formGroup]="form">
-        <input style="" nz-input placeholder="Basic usage" appDisabled [disabledDirective]="a" formControlName="name" />
+        <input style="" nz-input placeholder="Basic usage" formControlName="name" />
     </form>
-    <span>{{date | serviceDemo | async}}</span>
+<!--    <span>{{date | serviceDemo | async}}</span>-->
+  <button (click)="add()">sdfd</button>
 </div>
-<button (click)="a = ! a">{{a}}asdfasd</button>

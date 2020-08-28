@@ -1,5 +1,5 @@
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SimpleReuseStrategy implements RouteReuseStrategy {
@@ -11,7 +11,11 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     /** 表示对所有路由允许复用 如果你有路由不想利用可以在这加一些业务逻辑判断 */
     public shouldDetach(route: ActivatedRouteSnapshot): boolean {
         console.debug('===shouldDetach-route', route);
-        return true;
+        if (route.data.isPage) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象 */
@@ -29,7 +33,6 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     /** 从缓存中获取快照，若无则返回null */
     public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
         console.debug('===retrieve-route', route);
-        console.log(route);
         if (!route.routeConfig) {
             return null;
         }

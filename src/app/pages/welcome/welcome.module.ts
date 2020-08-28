@@ -5,11 +5,12 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
 import { WelcomeDirective } from './welcome.directive';
+import { ContentComponent } from './content/content.component';
 
 
 @NgModule({
     imports: [WelcomeRoutingModule],
-    declarations: [WelcomeComponent, WelcomeDirective],
+    declarations: [WelcomeComponent, WelcomeDirective, ContentComponent],
     exports: [WelcomeComponent],
 })
 export class WelcomeModule {

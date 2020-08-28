@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'service',
+                redirectTo: 'scoket',
                 pathMatch: 'full',
             },
             {
@@ -23,11 +23,17 @@ const routes: Routes = [
                 path: 'welcome',
                 loadChildren: () => import('../pages/welcome/welcome.module')
                     .then(m => m.WelcomeModule),
+                data: {
+                    isPage: true
+                }
             },
             {
                 path: 'canvas',
                 loadChildren: () => import('../pages/canvas/canvas.module')
                     .then(m => m.CanvasModule),
+                data: {
+                    isPage: true
+                }
             },
             {
                 path: 'rx',
@@ -83,6 +89,11 @@ const routes: Routes = [
                 path: 'service',
                 loadChildren: () => import('../pages/service-demo/service-demo.module')
                     .then(m => m.ServiceDemoModule)
+            },
+            {
+                path: 'scoket',
+                loadChildren: () => import('../pages/my-scoket/my-scoket.module')
+                    .then(m => m.MyScoketModule)
             }
         ],
     },

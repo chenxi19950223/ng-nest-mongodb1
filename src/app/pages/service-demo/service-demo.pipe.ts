@@ -10,7 +10,8 @@ import * as moment from 'moment';
 })
 export class ServiceDemoPipe implements PipeTransform {
 
-    transform(value: Date, ...args: Date[]): any {
+    transform(value: any, ...args: Date[]): any {
+        return  'sdf';
         if (new Date(value).getTime() - new Date().getTime() <= 0) {
             return Observable.create(observer => observer.next('00:00:00'));
         }

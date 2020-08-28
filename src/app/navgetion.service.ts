@@ -81,6 +81,12 @@ export class NavgetionService {
                         title: 'swiper',
                         type: 'item',
                         routerLink: 'swiper'
+                    },
+                    {
+                        id: 'scoket',
+                        title: 'scoket',
+                        type: 'item',
+                        routerLink: 'scoket'
                     }
                 ],
             },
