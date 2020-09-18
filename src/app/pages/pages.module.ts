@@ -7,6 +7,7 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
+import { LeadDemoModule } from '../component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PagesComponent } from './pages.component';
         NzMenuModule,
         IconsProviderModule,
         NgZorroAntdModule,
+        LeadDemoModule
     ],
     providers: [{provide: NZ_I18N, useValue: zh_CN}],
 })

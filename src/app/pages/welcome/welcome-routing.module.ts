@@ -7,6 +7,15 @@ const routes: Routes = [
         path: '',
         component: WelcomeComponent,
     },
+    {
+        path: 'aaa',
+        loadChildren: () => import('./aaa/aaa.module')
+            .then(m => m.AaaModule),
+        data: {
+            isPage: true,
+            preload: true
+        }
+    }
 ];
 
 @NgModule({

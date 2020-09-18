@@ -1,0 +1,18 @@
+<div #box style="position: absolute; top: 0; left: 0; z-index: 9999999; width: 100%; height: 100%;">
+    <div *ngIf="show" [ngStyle]="{
+    'width': locationAndSize.w + locationAndSize.l + locationAndSize.r + 'px',
+     'height': locationAndSize.h + locationAndSize.t + locationAndSize.b + 'px',
+      'border-left': locationAndSize.l + 'px solid rgba(0,0,0,.3)',
+      'border-right': locationAndSize.r + 'px solid rgba(0,0,0,.3)',
+      'border-top': locationAndSize.t + 'px solid rgba(0,0,0,.3)',
+      'border-bottom': locationAndSize.b + 'px solid rgba(0,0,0,.3)'
+      }" style="position: relative">
+        <div  style="position: absolute;" [ngStyle]="{
+        'top': 0 + 'px',
+        'left': -150 + 'px'
+        }" >
+            <button (click)="next()">下一步</button>
+            <button *ngIf="order > 0" (click)="last()">上一步</button>
+        </div>
+    </div>
+</div>

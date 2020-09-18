@@ -1,1 +1,5 @@
 <button (click)="btn()">btn</button>
+<input type="file" (change)="file($event)">
+<img [src]="src" alt="">
+<video [src]="src" autoplay></video>
+<textarea (keydown)="text($event)" (drop)="drag($event)" [(ngModel)]="textData"></textarea>

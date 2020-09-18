@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
@@ -7,6 +7,7 @@ import { filter, tap } from 'rxjs/operators';
 
 import { ImagesService } from './images.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LeadDemoComponent } from '../../component/lead-demo/lead-demo.component';
 
 export interface GridType {
     cols: number;
@@ -21,7 +22,7 @@ export interface GridType {
     templateUrl: './images.component.html',
     styleUrls: ['./images.component.scss'],
 })
-export class ImagesComponent implements OnInit {
+export class ImagesComponent implements OnInit, AfterViewInit, OnDestroy {
     imgSrc: any[] = [];
     base: any[] = [];
 
@@ -35,7 +36,6 @@ export class ImagesComponent implements OnInit {
         private http: HttpClient,
         private domSanitizer: DomSanitizer,
     ) {
-
         this.gridType = [
             [
                 {cols: 2, rows: 1, x: 0, y: 0},
@@ -97,6 +97,12 @@ export class ImagesComponent implements OnInit {
             '../../../assets/images/8.png',
             '../../../assets/images/9.png',
         ];
+    }
+
+    ngAfterViewInit() {
+    }
+
+    ngOnDestroy(): void {
     }
 
     ngOnInit() {

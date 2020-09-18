@@ -71,12 +71,6 @@ export class NavgetionService {
                         routerLink: 'amap',
                     },
                     {
-                        id: 'three',
-                        title: 'three',
-                        type: 'item',
-                        routerLink: 'three',
-                    },
-                    {
                         id: 'swiper',
                         title: 'swiper',
                         type: 'item',
@@ -87,6 +81,12 @@ export class NavgetionService {
                         title: 'scoket',
                         type: 'item',
                         routerLink: 'scoket'
+                    },
+                    {
+                        id: 'lead',
+                        title: 'lead',
+                        type: 'item',
+                        routerLink: 'lead'
                     }
                 ],
             },

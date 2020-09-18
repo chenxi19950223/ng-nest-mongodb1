@@ -1,26 +1,21 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
+import { webSocket } from 'rxjs/webSocket';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MySockectService {
-
     private socket: SocketIOClient.Socket;
     constructor() {
-        this.socket = io('http://192.168.15.213:3000');
+        this.socket = io('http://192.168.15.213:81');
     }
     sendMessage(msg: string) {
         this.socket.on('connect',  (res) => {
-            console.log('链接成功');
             this.socket.emit('events', {
                 name: 'cx'
             });
-
-            // 发射
-            // 发射
-            // socket.emit('identity', 0, (response) => console.log('Identity:', response));
         });
     }
 
@@ -35,5 +30,9 @@ export class MySockectService {
                 observer.next(msg);
             });
         });
+    }
+
+    fileEmit(file): any {
+        this.socket.emit('events', {file});
     }
 }

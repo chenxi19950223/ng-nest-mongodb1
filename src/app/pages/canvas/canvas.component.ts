@@ -5,6 +5,8 @@ import { DOCUMENT } from '@angular/common';
 import { AsyncSubject, fromEvent, Observable, Subject } from 'rxjs';
 import { NgForage } from 'ngforage';
 import { map } from 'rxjs/operators';
+import { RouterService } from '../router.service';
+import { LeadDemoComponent } from '../../component/lead-demo/lead-demo.component';
 
 
 @Component({
@@ -30,8 +32,8 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy {
         private el: ElementRef,
         private domSanitizer: DomSanitizer,
         private ngForage: NgForage,
+        private routerService: RouterService
     ) {
-
     }
 
     f(v, w, z): void {
@@ -46,6 +48,7 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy {
         this.straightLine();
         this.startBor();
         this.elCanImg();
+        console.log(this.routerService.add());
     }
 
     elCanImg(): void {

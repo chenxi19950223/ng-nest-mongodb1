@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'scoket',
+                redirectTo: 'lead',
                 pathMatch: 'full',
             },
             {
@@ -24,7 +24,8 @@ const routes: Routes = [
                 loadChildren: () => import('../pages/welcome/welcome.module')
                     .then(m => m.WelcomeModule),
                 data: {
-                    isPage: true
+                    isPage: true,
+                    preload: true
                 }
             },
             {
@@ -32,13 +33,18 @@ const routes: Routes = [
                 loadChildren: () => import('../pages/canvas/canvas.module')
                     .then(m => m.CanvasModule),
                 data: {
-                    isPage: true
+                    isPage: true,
+                    preload: true
                 }
             },
             {
                 path: 'rx',
                 loadChildren: () => import('../pages/rx/rx.module')
                     .then(m => m.RxModule),
+                data: {
+                    isPage: true,
+                    preload: true
+                }
             },
             {
                 path: 'key',
@@ -94,6 +100,15 @@ const routes: Routes = [
                 path: 'scoket',
                 loadChildren: () => import('../pages/my-scoket/my-scoket.module')
                     .then(m => m.MyScoketModule)
+            },
+            {
+                path: 'lead',
+                loadChildren: () => import('../pages/lead/lead.module')
+                    .then(m => m.LeadModule),
+                data: {
+                    isPage: true,
+                    preload: true
+                }
             }
         ],
     },

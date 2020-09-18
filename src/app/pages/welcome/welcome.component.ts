@@ -33,7 +33,6 @@ export class WelcomeComponent implements OnInit {
     }
 
     submitForm(): void {
-        console.log(this.loginForm.value);
     }
 
 }
