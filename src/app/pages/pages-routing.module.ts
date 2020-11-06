@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PagesComponent } from './pages.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 
 const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
-                redirectTo: 'lead',
+                redirectTo: 'hb',
                 pathMatch: 'full',
             },
             {
@@ -61,6 +63,9 @@ const routes: Routes = [
                 loadChildren: () => import('../pages/umeditor-text/umeditor-text.module')
                     .then(m => m.UmeditorTextModule),
             },
+            /*
+            * 图片组合功能
+            * */
             {
                 path: 'images',
                 loadChildren: () => import('../pages/images/images.module')
@@ -109,6 +114,14 @@ const routes: Routes = [
                     isPage: true,
                     preload: true
                 }
+            },
+            /*
+            * h5页面生成海报功能
+            * */
+            {
+                path: 'hb',
+                loadChildren: () => import('../pages/htmlcanvas/htmlcanvas.module')
+                    .then(m => m.HtmlcanvasModule)
             }
         ],
     },

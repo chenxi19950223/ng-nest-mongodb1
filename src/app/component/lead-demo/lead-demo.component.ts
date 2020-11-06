@@ -3,12 +3,13 @@ import {
     ElementRef,
     OnInit,
     ViewChild,
-    AfterViewInit
+    AfterViewInit,
+    OnDestroy
 } from '@angular/core';
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router, ActivatedRoute, ChildActivationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-import { filter } from 'rxjs/operators';
+import { filter, first, last } from 'rxjs/operators';
 
 import { LeadListType } from '../../pages/lead/lead-list-type';
 import { Subject } from 'rxjs';
@@ -17,8 +18,14 @@ import { LeadDemoService } from './lead-demo.service';
 const LEADLIST: LeadListType[] = [
     {id: 'welcome', title: '欢迎页第一项', details: '第一项', router: '/pages/welcome'},
     {id: 'welcome-btn', title: '欢迎页第一项', details: '第一项', router: '/pages/welcome'},
-    {id: 'first', title: 'lead页第一项', details: '第一项', router: '/pages/lead'},
-    {id: 'aaa', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第一项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第三项', details: '第一项', router: '/pages/lead'},
+    {id: 'first', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第二项', details: '第一项', router: '/pages/lead'},
+    {id: '', title: 'lead页第三项', details: '第一项', router: '/pages/lead'},
 ];
 
 interface LocationAndSizeType {
@@ -35,50 +42,75 @@ interface LocationAndSizeType {
     templateUrl: './lead-demo.component.html',
     styleUrls: ['./lead-demo.component.scss']
 })
-export class LeadDemoComponent implements OnInit, AfterViewInit {
+export class LeadDemoComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('box', {static: true}) box: ElementRef<HTMLDivElement>;
-    leadList: LeadListType[];
-    leadDom: Element;
-    order: number;
-    locationAndSize: LocationAndSizeType;
-    show: boolean;
-    id: string;
+    leadList: LeadListType[]; // 引导数据列表
+    index: number; // 引导索引
+    locationAndSize: LocationAndSizeType; // 遮罩元素样式
+    show: boolean; // 是否显示遮罩元素
+    isLead: boolean; // 是否开启引导
+    /*
+    * 创建一个可观察对象
+    * 每次发送流的时候重新开始引导
+    * */
+    leadSubject: Subject<any>;
 
-    isLead: boolean;
-    sub: Subject<any>;
-
+    leadStepType: string; // 引导步骤类型(上一步或者下一步)
     constructor(
         private router: Router,
         private http: HttpClient,
         private leadDemoService: LeadDemoService
     ) {
-
-        this.show = false;
-        this.order = 0;
+        this.show = false; // 当前引导元素是否显示
+        this.index = 0; // 当前引导项索引
+        this.leadStepType = 'next';
         this.leadList = LEADLIST;
-        this.sub = new Subject<any>();
+        this.leadSubject = new Subject<any>();
+        this.router.events
+            .pipe(
+                filter(event => event instanceof ChildActivationEnd ),
+                first()
+            )
+            .subscribe(event => {
+                console.log(event);
+            });
+
+        // 监测路由
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
             )
             .subscribe(event => {
-                const sub = this.sub.subscribe(res => {
+                console.log(event);
+                const sub = this.leadSubject.subscribe(res => {
                     this.isLead = res;
+                    this.index = 0;
                     if (res) {
                         setTimeout(() => {
-                            this.isRouter();
                             this.domFor(this.leadList);
-                            this.leadInit();
+                            this.nextDome();
                         }, 0);
                     }
                     sub.unsubscribe();
                 });
+                // 当前是否继续进行引导
                 if (this.isLead) {
                     setTimeout(() => {
-                        console.log(1)
-                        this.isRouter();
                         this.domFor(this.leadList);
-                        this.leadInit();
+                        // 判断是向后查找还是向前查找
+                        switch (this.leadStepType) {
+                            case 'next': {
+                                this.nextDome();
+                                break;
+                            }
+                            case 'last': {
+                                this.lastDome();
+                                break;
+                            }
+                            default: {
+                                break;
+                            }
+                        }
                     }, 0);
                 }
             });
@@ -86,10 +118,34 @@ export class LeadDemoComponent implements OnInit, AfterViewInit {
 
     }
 
-    /*
-    * 递归遍历元素
-    * （因为同一页面已经查找过dom元素所以再次进入页面会出现二次查找问题此处需要优化）
-    * */
+    // 向后查找
+    nextDome(): void {
+        if (this.index === this.leadList.length - 1) {
+            console.log('最后一步！');
+            return;
+        }
+        this.isRouter();
+        if (this.router.url === this.leadList[this.index].router && !!!this.leadList[this.index].HTMLDom) {
+            this.index = this.index + 1;
+            this.nextDome();
+        }
+        this.leadInit();
+    }
+
+    // 向前查找
+    lastDome(): void {
+        if (this.index < 0) {
+            console.log('第一步！');
+            return;
+        }
+        this.isRouter();
+        if (this.router.url === this.leadList[this.index].router && !!!this.leadList[this.index].HTMLDom) {
+            this.index = this.index - 1;
+            this.lastDome();
+        }
+        this.leadInit();
+    }
+
     domFor(dom): void {
         // 遍历dom树子节点
         for (const item of dom) {
@@ -101,39 +157,35 @@ export class LeadDemoComponent implements OnInit, AfterViewInit {
 
     // 下一步
     next(): void {
-        this.order = this.order + 1;
-        if (this.order === this.leadList.length) {
-            window.scrollTo({top: 0});
-            this.box.nativeElement.style.display = 'none';
-            this.isLead = false;
+        this.index = this.index + 1;
+        if (this.index === this.leadList.length) {
+            console.log('最后一步');
             return;
         }
-        this.isRouter();
-        if (this.router.url === this.leadList[this.order].router && !!!this.leadList[this.order].HTMLDom) {
-            this.order = this.order + 1;
+        this.leadStepType = 'next';
+        if (this.router.url === this.leadList[this.index].router && !!!this.leadList[this.index].HTMLDom) {
+            this.index = this.index + 1;
+            this.nextDome();
         }
         this.leadInit();
     }
 
     // 上一步
     last(): void {
-        this.isRouter();
-        this.order = this.order - 1;
-        if (this.order < 0) {
-            window.scrollTo({top: 0});
-            this.box.nativeElement.style.display = 'none';
+        this.index = this.index - 1;
+        if (this.index < 0) {
+            console.log('第一步');
             return;
         }
-        if (!this.leadList[this.order].HTMLDom) {
-            this.order = this.order - 1;
-        }
+        this.leadStepType = 'last';
+        this.lastDome();
         this.leadInit();
     }
 
     // 初始化引导页
     leadInit(): void {
         this.isRouter();
-        this.getDom(this.leadList[this.order].HTMLDom);
+        this.getDom(this.leadList[this.index].HTMLDom);
     }
 
     // 获取元素位置与宽高
@@ -156,18 +208,6 @@ export class LeadDemoComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.leadDemoService.sub
-            .subscribe(res => {
-                this.box.nativeElement.style.display = 'block';
-                this.order = 0;
-                this.sub.next(true);
-            });
-        this.http.post('http://192.168.15.213:3000/load', {})
-            .subscribe((res: any) => {
-                if (res.isLead) {
-                    this.sub.next(res.isLead);
-                }
-            });
     }
 
     ngAfterViewInit() {
@@ -178,10 +218,14 @@ export class LeadDemoComponent implements OnInit, AfterViewInit {
     * 如果路由不一致需要进行转跳
     * */
     isRouter(): void {
-        if (this.router.url !== this.leadList[this.order].router) {
-            this.router.navigate([this.leadList[this.order].router]);
+        if (this.router.url !== this.leadList[this.index].router) {
+            this.router.navigate([this.leadList[this.index].router]);
             return;
         }
+    }
+
+    ngOnDestroy() {
+
     }
 
 }

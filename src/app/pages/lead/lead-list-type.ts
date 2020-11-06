@@ -20,4 +20,5 @@ export interface LeadListType {
     router: string;
     // 当前列匹配元素
     HTMLDom?: any;
+    isIndex?: number;
 }

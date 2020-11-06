@@ -22,18 +22,5 @@ export class AppComponent {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute) {
-// //路由事件
-//         this.router.events.filter(event => event instanceof NavigationEnd)
-//             .map(() => this.activatedRoute)
-//             .map(route => {
-//                 while (route.firstChild) route = route.firstChild;
-//                 return route;
-//             })
-//             .filter(route => route.outlet === 'primary')
-//             .mergeMap(route => route.data)
-//             .subscribe((event) => {
-//                 var menu = { module: event["module"]};
-//                 this.menuList.push(menu);
-//             });
     }
 }

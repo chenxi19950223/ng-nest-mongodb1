@@ -13,7 +13,7 @@ import 'echarts/map/js/province/henan';
     styleUrls: ['./echarts.component.scss'],
 })
 export class EchartsComponent implements OnInit {
-    a = 10
+    a = 10;
 
     posList = [
         'left', 'right', 'top', 'bottom',
