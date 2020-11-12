@@ -177,7 +177,7 @@ export class ImagesComponent implements OnInit, AfterViewInit, OnDestroy {
                     'name',
                 );
                 console.log(files);
-                // this.base.push(res.toData);
+                this.base.push(res.toData);
                 // let request;
                 // const formData = new FormData();
                 // formData.append('pem', res.blob);

@@ -60,6 +60,7 @@ export class ImagesService {
                         canvas.toBlob((blob) => {
                             toData = blob;
                         });
+                        console.log(canvas.toData);
                         sub.next({index: i, toData: canvas.toData, blob: toData});
                     });
             }
@@ -75,7 +76,10 @@ export class ImagesService {
                 res => subA.next(res),
             );
         return new Observable((observer) => {
-            subA.subscribe(res => observer.next(res));
+            subA.subscribe(res => {
+                console.log(res);
+                observer.next(res);
+            });
         });
     }
 

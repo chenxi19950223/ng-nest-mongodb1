@@ -8,6 +8,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { SimpleReuseStrategy } from './SimpleReuseStrategy';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +30,8 @@ registerLocaleData(zh);
         HttpClientModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        HttpClientJsonpModule
+        HttpClientJsonpModule,
+        AngularSvgIconModule.forRoot()
     ],
     providers: [
         {provide: NZ_I18N, useValue: zh_CN},

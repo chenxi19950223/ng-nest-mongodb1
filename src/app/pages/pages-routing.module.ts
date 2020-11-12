@@ -13,7 +13,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'hb',
+                redirectTo: 'icon',
                 pathMatch: 'full',
             },
             {
@@ -122,6 +122,11 @@ const routes: Routes = [
                 path: 'hb',
                 loadChildren: () => import('../pages/htmlcanvas/htmlcanvas.module')
                     .then(m => m.HtmlcanvasModule)
+            },
+            {
+                path: 'icon',
+                loadChildren: () => import('../pages/icon/icon.module')
+                    .then(m => m.IconModule)
             }
         ],
     },
